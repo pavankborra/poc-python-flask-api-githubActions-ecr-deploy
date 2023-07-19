@@ -35,7 +35,7 @@ env:
   ECR_REPOSITORY: poc-ecr-repo-001           # set this to your Amazon ECR repository name
   ECS_SERVICE: sample-app-service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: poc-ecs-cluster-001                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: first-run-task-definition:1  # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: task-definition.json  # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: sample-app           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
@@ -59,6 +59,10 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
+
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition first-run-task-definition:1 --query taskDefinition > task-definition.json
 
     - name: Login to Amazon ECR
       id: login-ecr
