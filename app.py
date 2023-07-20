@@ -12,7 +12,8 @@ days = [
 ]
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
+#commented above to confirm if the lack of CORS is causing error when accessing after deployment to ECS 
 
 @app.route("/", methods=["GET"])
 def get_days():
