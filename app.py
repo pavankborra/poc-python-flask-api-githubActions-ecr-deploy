@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, abort
+from flask_cors import CORS
 
 days = [
     {"id": 1, "name": "Monday"},
@@ -11,7 +12,7 @@ days = [
 ]
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route("/", methods=["GET"])
 def get_days():
@@ -34,4 +35,4 @@ def post_days():
 if __name__ == "__main__":
     # app.run(debug=True) 
     # Commented the above line and inserted the below
-    app.run(host='0.0.0.0', port=3000)
+    app.run(host='0.0.0.0', port=80)
