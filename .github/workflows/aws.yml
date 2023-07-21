@@ -32,7 +32,7 @@ on:
 
 env:
   AWS_REGION: us-west-2                  # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: poc-ecr-repo-001           # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: poc-repository-001           # set this to your Amazon ECR repository name
   ECS_SERVICE: poc-service-001                 # set this to your Amazon ECS service name
   ECS_CLUSTER: poc-cluster-001                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: task-definition.json  # set this to the path to your Amazon ECS task definition
@@ -79,7 +79,7 @@ jobs:
 
     - name: Download task definition
       run: |
-        aws ecs describe-task-definition --task-definition poc-taskdefinition-001 --query taskDefinition > task-definition.json
+        aws ecs describe-task-definition --task-definition poc-task-definition-001 --query taskDefinition > task-definition.json
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
